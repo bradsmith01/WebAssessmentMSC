@@ -1,0 +1,285 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2708
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww28300\viewh6740\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 CREATE DATABASE testlogin;\
+CREATE TABLE cartItems (\
+    cartItemsId int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,\
+    shoppingSessionId int(11) UNIQUE KEY NOT NULL,\
+    productId int(11) UNIQUE KEY NOT NULL,\
+    cartItemQuantity int(11) NOT NULL,\
+    cartItemCreatedDate DATETIME DEFAULT CURRENT_TIMESTAMP)\
+    ;\
+CREATE TABLE discountCode (\
+    discountCodeId int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,\
+    discountCodeForCheckout varchar(128) UNIQUE KEY NOT NULL,\
+    discountPercentage int(3) NOT NULL,\
+    createdDate DATETIME DEFAULT CURRENT_TIMESTAMP,\
+    expiryDate DATETIME \
+    );\
+CREATE TABLE orderDetails (\
+    orderDetailsId int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,\
+    userId int(11) NOT NULL,\
+    orderTotal float(6) NOT NULL,\
+    orderTaxTotal float(6) NOT NULL,\
+    shippingDate DATETIME DEFAULT CURRENT_TIMESTAMP,\
+    billingDate DATETIME DEFAULT CURRENT_TIMESTAMP\
+    );\
+CREATE TABLE products (\
+    productId int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,\
+    productName varchar(128) NOT NULL,\
+    productPrice float(6) NOT NULL,\
+    category varchar(128) NOT NULL,\
+    unitsInStock int(11) NOT NULL,\
+    averageRating float(6) NOT NULL, \
+    size varchar(2) NOT NULL\
+    );\
+\
+CREATE TABLE admins (\
+    adminId INT NOT NULL PRIMARY KEY AUTO_INCREMENT,\
+    adminUsername VARCHAR(50) NOT NULL UNIQUE,\
+    adminPassword VARCHAR(255) NOT NULL,\
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,\
+    lastLoggedOn DATETIME DEFAULT CURRENT_TIMESTAMP\
+);\
+CREATE TABLE shoppingSession (\
+    shoppingSessionId int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,\
+    userId INT(11) UNIQUE KEY NOT NULL,\
+    shoppingSessionTotal float(6) NOT NULL,\
+    shoppingSessionCreatedDate DATETIME DEFAULT CURRENT_TIMESTAMP,\
+    discountCodeId int(11) UNIQUE KEY NOT NULL\
+    );\
+CREATE TABLE users (\
+    userId INT NOT NULL PRIMARY KEY AUTO_INCREMENT,\
+    userUsername VARCHAR(50) NOT NULL UNIQUE,\
+    userPassword VARCHAR(255) NOT NULL,\
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP\
+);\
+\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('1', 'SuperOversized Bundle Beige', '70', 'Bundle', '46', '4.1', 'XS');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('2', 'SuperOversized Bundle Beige', '70', 'Bundle', '17', '4.1', 'S');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('3', 'SuperOversized Bundle Beige', '70', 'Bundle', '60', '4.1', 'M');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('4', 'SuperOversized Bundle Beige', '70', 'Bundle', '51', '4.1', 'L');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('5', 'SuperOversized Bundle Beige', '70', 'Bundle', '19', '4.1', 'XL');\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('6', 'SuperOversized Bundle Grey', '70', 'Bundle', '12', '3.4', 'XS');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('7', 'SuperOversized Bundle Grey', '70', 'Bundle', '22', '3.4', 'S');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('8', 'SuperOversized Bundle Grey', '70', 'Bundle', '40', '3.4', 'M');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('9', 'SuperOversized Bundle Grey', '70', 'Bundle', '3', '3.4', 'L');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('10', 'SuperOversized Bundle Grey', '70', 'Bundle', '60', '3.4', 'XL');\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('11', 'SuperOversized Beige Sweats', '45', 'Sweats', '2', '3.7', 'XS');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('12', 'SuperOversized Beige Sweats', '45', 'Sweats', '21', '3.7', 'S');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('13', 'SuperOversized Beige Sweats', '45', 'Sweats', '46', '3.7', 'M');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('14', 'SuperOversized Beige Sweats', '45', 'Sweats', '31', '3.7', 'L');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('15', 'SuperOversized Beige Sweats', '45', 'Sweats', '23', '3.7', 'XL');\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('16', 'SuperOversized Grey Sweats', '45', 'Sweats', '43', '3.7', 'XS');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('17', 'SuperOversized Grey Sweats', '45', 'Sweats', '50', '3.7', 'S');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('18', 'SuperOversized Grey Sweats', '45', 'Sweats', '6', '3.7', 'M');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('19', 'SuperOversized Grey Sweats', '45', 'Sweats', '38', '3.7', 'L');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('20', 'SuperOversized Grey Sweats', '45', 'Sweats', '30', '3.7', 'XL');\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('21', 'SuperOversized Hoodie Beige', '50', 'Hoodies', '41', '4.4', 'XS');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('22', 'SuperOversized Hoodie Beige', '50', 'Hoodies', '55', '4.4', 'S');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('23', 'SuperOversized Hoodie Beige', '50', 'Hoodies', '9', '4.4', 'M');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('24', 'SuperOversized Hoodie Beige', '50', 'Hoodies', '1', '4.4', 'L');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('25', 'SuperOversized Hoodie Beige', '50', 'Hoodies', '11', '4.4', 'XL');\
+\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('26', 'SuperOversized Hoodie Grey', '50', 'Hoodies', '1', '4.1', 'XS');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('27', 'SuperOversized Hoodie Grey', '50', 'Hoodies', '25', '4.1', 'S');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('28', 'SuperOversized Hoodie Grey', '50', 'Hoodies', '13', '4.1', 'M');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('29', 'SuperOversized Hoodie Grey', '50', 'Hoodies', '41', '4.1', 'L');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('30', 'SuperOversized Hoodie Grey', '50', 'Hoodies', '21', '4.1', 'XL');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('31', 'SuperOversized Black Tee', '25', 'Tees', '43', '2.8', 'XS');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('32', 'SuperOversized Black Tee', '25', 'Tees', '14', '2.8', 'S');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('33', 'SuperOversized Black Tee', '25', 'Tees', '10', '2.8', 'M');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('34', 'SuperOversized Black Tee', '25', 'Tees', '39', '2.8', 'L');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('35', 'SuperOversized Black Tee', '25', 'Tees', '32', '2.8', 'XL');\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('36', 'Welfare Hoodie White', '60', 'Hoodies', '16', '4.7', 'XS');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('37', 'Welfare Hoodie White', '60', 'Hoodies', '45', '4.7', 'S');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('38', 'Welfare Hoodie White', '60', 'Hoodies', '20', '4.7', 'M');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('39', 'Welfare Hoodie White', '60', 'Hoodies', '32', '4.7', 'L');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('40', 'Welfare Hoodie White', '60', 'Hoodies', '46', '4.7', 'XL');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('41', 'Welfare Hoodie Black', '60', 'Hoodies', '19', '4.0', 'XS');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('42', 'Welfare Hoodie Black', '60', 'Hoodies', '23', '4.0', 'S');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('43', 'Welfare Hoodie Black', '60', 'Hoodies', '44', '4.0', 'M');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('44', 'Welfare Hoodie Black', '60', 'Hoodies', '14', '4.0', 'L');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('45', 'Welfare Hoodie Black', '60', 'Hoodies', '26', '4.0', 'XL');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('46', 'Persist Long Sleeve Tee Marl Grey', '25', 'Tees', '53', '2.1', 'XS');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('47', 'Persist Long Sleeve Tee Marl Grey', '25', 'Tees', '43', '2.1', 'S');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('48', 'Persist Long Sleeve Tee Marl Grey', '25', 'Tees', '59', '2.1', 'M');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('49', 'Persist Long Sleeve Tee Marl Grey', '25', 'Tees', '36', '2.1', 'L');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('50', 'Persist Long Sleeve Tee Marl Grey', '25', 'Tees', '51', '2.1', 'XL');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('51', 'Persist Long Sleeve Tee Black', '25', 'Tees', '5', '3.2', 'XS');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('52', 'Persist Long Sleeve Tee Black', '25', 'Tees', '52', '3.2', 'S');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('53', 'Persist Long Sleeve Tee Black', '25', 'Tees', '30', '3.2', 'M');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('54', 'Persist Long Sleeve Tee Black', '25', 'Tees', '5', '3.2', 'L');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('55', 'Persist Long Sleeve Tee Black', '25', 'Tees', '48', '3.2', 'XL');\
+\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('56', 'Limited Edition Blue Denim Jacket', '60', 'Tees', '56', '2.9', 'XS');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('57', 'Limited Edition Blue Denim Jacket', '60', 'Tees', '13', '2.9', 'S');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('58', 'Limited Edition Blue Denim Jacket', '60', 'Tees', '41', '2.9', 'M');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('59', 'Limited Edition Blue Denim Jacket', '60', 'Tees', '39', '2.9', 'L');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('60', 'Limited Edition Blue Denim Jacket', '60', 'Tees', '23', '2.9', 'XL');\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('61', 'Welfare Shorts Black', '25', 'Sweats', '34', '3.1', 'XS');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('62', 'Welfare Shorts Black', '25', 'Sweats', '40', '3.1', 'S');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('63', 'Welfare Shorts Black', '25', 'Sweats', '6', '3.1', 'M');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('64', 'Welfare Shorts Black', '25', 'Sweats', '38', '3.1', 'L');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('65', 'Welfare Shorts Black', '25', 'Sweats', '50', '3.1', 'XL');\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('66', 'Original 3 Pack of White Socks', '12', 'Accessories', '56', '2.9', 'XS');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('67', 'Original 3 Pack of White Socks', '12', 'Accessories', '45', '2.9', 'S');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('68', 'Original 3 Pack of White Socks', '12', 'Accessories', '5', '2.9', 'M');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('69', 'Original 3 Pack of White Socks', '12', 'Accessories', '15', '2.9', 'L');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('70', 'Original 3 Pack of White Socks', '12', 'Accessories', '17', '2.9', 'XL');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('71', 'Original Suede Cap White', '25', 'Accessories', '49', '3.2', 'XS');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('72', 'Original Suede Cap White', '25', 'Accessories', '35', '3.2', 'S');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('73', 'Original Suede Cap White', '25', 'Accessories', '49', '3.2', 'M');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('74', 'Original Suede Cap White', '25', 'Accessories', '58', '3.2', 'L');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('75', 'Original Suede Cap White', '25', 'Accessories', '57', '3.2', 'XL');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('76', 'Simplicity Beanie - Snow White', '15', 'Accessories', '28', '1.4', 'XS');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('77', 'Simplicity Beanie - Snow White', '15', 'Accessories', '39', '1.4', 'S');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('78', 'Simplicity Beanie - Snow White', '15', 'Accessories', '48', '1.4', 'M');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('79', 'Simplicity Beanie - Snow White', '15', 'Accessories', '3', '1.4', 'L');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('80', 'Simplicity Beanie - Snow White', '15', 'Accessories', '33', '1.4', 'XL');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('81', 'Simplicity Beanie - Stone Grey', '15', 'Accessories', '19', '4.0', 'XS');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('82', 'Simplicity Beanie - Stone Grey', '15', 'Accessories', '11', '4.0', 'S');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('83', 'Simplicity Beanie - Stone Grey', '15', 'Accessories', '45', '4.0', 'M');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('84', 'Simplicity Beanie - Stone Grey', '15', 'Accessories', '10', '4.0', 'L');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('85', 'Simplicity Beanie - Stone Grey', '15', 'Accessories', '27', '4.0', 'XL');\
+\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('86', 'Simplicity Beanie - Marl Grey', '15', 'Accessories', '54', '3.0', 'XS');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('87', 'Simplicity Beanie - Marl Grey', '15', 'Accessories', '39', '3.0', 'S');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('88', 'Simplicity Beanie - Marl Grey', '15', 'Accessories', '45', '3.0', 'M');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('89', 'Simplicity Beanie - Marl Grey', '15', 'Accessories', '6', '3.0', 'L');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('90', 'Simplicity Beanie - Marl Grey', '15', 'Accessories', '50', '3.0', 'XL');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('91', 'Simplicity Beanie - Pure Black', '15', 'Accessories', '39', '1.8', 'XS');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('92', 'Simplicity Beanie - Pure Black', '15', 'Accessories', '8', '1.8', 'S');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('93', 'Simplicity Beanie - Pure Black', '15', 'Accessories', '42', '1.8', 'M');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('94', 'Simplicity Beanie - Pure Black', '15', 'Accessories', '57', '1.8', 'L');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('95', 'Simplicity Beanie - Pure Black', '15', 'Accessories', '54', '1.8', 'XL');\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('96', 'Simplicity Beanie - Pastel Peach', '15', 'Accessories', '60', '4.0', 'XS');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('97', 'Simplicity Beanie - Pastel Peach', '15', 'Accessories', '35', '4.0', 'S');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('98', 'Simplicity Beanie - Pastel Peach', '15', 'Accessories', '23', '4.0', 'M');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('99', 'Simplicity Beanie - Pastel Peach', '15', 'Accessories', '6', '4.0', 'L');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('100', 'Simplicity Beanie - Pastel Peach', '15', 'Accessories', '54', '4.0', 'XL');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('101', 'Simplicity Beanie - Baby Blue', '15', 'Accessories', '17', '4.1', 'XS');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('102', 'Simplicity Beanie - Baby Blue', '15', 'Accessories', '13', '4.1', 'S');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('103', 'Simplicity Beanie - Baby Blue', '15', 'Accessories', '23', '4.1', 'M');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('104', 'Simplicity Beanie - Baby Blue', '15', 'Accessories', '25', '4.1', 'L');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('105', 'Simplicity Beanie - Baby Blue', '15', 'Accessories', '4', '4.1', 'XL');\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('106', 'Simplicity Beanie - Hot Pink', '15', 'Accessories', '5', '4.7', 'XS');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('107', 'Simplicity Beanie - Hot Pink', '15', 'Accessories', '6', '4.7', 'S');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('108', 'Simplicity Beanie - Hot Pink', '15', 'Accessories', '49', '4.7', 'M');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('109', 'Simplicity Beanie - Hot Pink', '15', 'Accessories', '23', '4.7', 'L');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('110', 'Simplicity Beanie - Hot Pink', '15', 'Accessories', '12', '4.7', 'XL');\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('111', 'Hydrator', '20', 'Accessories', '23', '3.1', 'XS');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('112', 'Hydrator', '20', 'Accessories', '49', '3.1', 'S');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('113', 'Hydrator', '20', 'Accessories', '46', '3.1', 'M');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('114', 'Hydrator', '20', 'Accessories', '1', '3.1', 'L');\
+\
+INSERT INTO `products` (`productID`, `productName`, `productPrice`, `category`, `unitsInStock`, `averageRating`, `size`) VALUES ('115', 'Hydrator', '20', 'Accessories', '42', '3.1', 'XL');\
+}
