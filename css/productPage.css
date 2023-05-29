@@ -1,0 +1,24 @@
+
+#freeShipping{
+    background-color: grey;
+    
+}
+
+
+.stars{
+    
+    width: 10%;
+}
+#myform {
+    text-align: center;
+    padding: 5px;
+    
+    margin: 2%;
+}
+.qty {
+    width: 10%;
+    height: 25px;
+    text-align: center;
+}
+input.qtyplus { width:25px; height:25px;}
+input.qtyminus { width:25px; height:25px;}
