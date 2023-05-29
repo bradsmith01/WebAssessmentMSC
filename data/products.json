@@ -1,0 +1,142 @@
+{
+    "products": [
+        {
+            "id":1,
+            "title":"SuperOversized Bundle Beige",
+            "price":"70",
+            "category":"Bundle"
+        },
+        {
+            "id":2,
+            "title":"SuperOversized Bundle Grey",
+            "price":"70",
+            "category":"Bundle"
+        },
+        {
+            "id":3,
+            "title":"SuperOversized Beige Sweats",
+            "price":"45",
+            "category":"Sweats"
+        },
+        {
+            "id":4,
+            "title":"SuperOversized Grey Sweats",
+            "price":"45",
+            "category":"Sweats"
+        },
+        {
+            "id":5,
+            "title":"SuperOversized Hoodie Beige",
+            "price":"50",
+            "category":"Hoodie"
+        },
+        {
+            "id":6,
+            "title":"SuperOversized Hoodie Grey",
+            "price":"50",
+            "category":"Hoodie"
+        },
+        {
+            "id":7,
+            "title":"SuperOversized Black Tee",
+            "price":"25",
+            "category":"Tee"
+        },
+        {
+            "id":8,
+            "title":"Welfare Hoodie White",
+            "price":"60",
+            "category":"Hoodie"
+        },
+        {
+            "id":9,
+            "title":"Welfare Hoodie Black",
+            "price":"60",
+            "category":"Hoodie"
+        },
+        {
+            "id":10,
+            "title":"Persist Long Sleeve Tee Marl Grey",
+            "price":"25",
+            "category":"Tee"
+        },
+        {
+            "id":11,
+            "title":"Persist Long Sleeve Tee Black",
+            "price":"25",
+            "category":"Tee"
+        },
+        {
+            "id":12,
+            "title":"Limited Edition Blue Denim Jacket",
+            "price":"60",
+            "category":"Tee"
+        },
+        {
+            "id":13,
+            "title":"Welfare Shorts Black",
+            "price":"25",
+            "category":"Sweats"
+        },
+        {
+            "id":14,
+            "title":"Original 3 Pack of White Socks",
+            "price":"12",
+            "category":"Accessories"
+        },
+        {
+            "id":15,
+            "title":"Original Suede Cap White",
+            "price":"25",
+            "category":"Accessories"
+        },
+        {
+            "id":16,
+            "title":"Simplicity Beanie - Snow White",
+            "price":"15",
+            "category":"Accessories"
+        },
+        {
+            "id":17,
+            "title":"Simplicity Beanie - Stone Grey",
+            "price":"15",
+            "category":"Accessories"
+        },
+        {
+            "id":18,
+            "title":"Simplicity Beanie - Marl Grey",
+            "price":"15",
+            "category":"Accessories"
+        },
+        {
+            "id":19,
+            "title":"Simplicity Beanie - Pure Black",
+            "price":"15",
+            "category":"Accessories"
+        },
+        {
+            "id":20,
+            "title":"Simplicity Beanie - Pastel Peach",
+            "price":"15",
+            "category":"Accessories"
+        },
+        {
+            "id":21,
+            "title":"Simplicity Beanie - Baby Blue",
+            "price":"15",
+            "category":"Accessories"
+        },
+        {
+            "id":22,
+            "title":"Simplicity Beanie - Hot Pink",
+            "price":"15",
+            "category":"Accessories"
+        },
+        {
+            "id":23,
+            "title":"Hydrator",
+            "price":"20",
+            "category":"Accessories"
+        }
+    ]
+}
